@@ -27,23 +27,6 @@ maze-solver-ai
 └── .gitignore                 # Files and directories to ignore in version control
 ```
 
-## Setup Instructions
-
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd maze-solver-ai
-   ```
-
-2. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Run the application:
-   ```
-   python src/main.py
-   ```
 
 ## Usage
 
