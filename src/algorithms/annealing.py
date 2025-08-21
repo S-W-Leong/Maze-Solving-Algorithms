@@ -37,4 +37,4 @@ def simulated_annealing(maze, start, goal, max_iterations=1000, initial_temp=100
 
         current_temp *= cooling_rate
 
-    return best_path, len(best_path)
+    return best_path, len(best_path) - 1 if best_path else 0

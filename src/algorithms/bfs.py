@@ -19,7 +19,7 @@ def bfs(maze, start, goal):
                 path.append(current)
                 current = parent[current]
             path.reverse()
-            return path, len(path)
+            return path, len(path) - 1 if path else 0
         
         # Explore neighbors
         for direction in [(0, 1), (1, 0), (0, -1), (-1, 0)]:

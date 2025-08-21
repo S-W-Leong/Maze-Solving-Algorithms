@@ -68,23 +68,23 @@ def run_algorithm(algorithm, start, goal):
         # DFS returns: path, path_found, visited_count
         elif len(result) == 3 and algorithm.__name__ == "dfs":
             path, path_found, visited_count = result
-            steps = len(path) if path else 0
+            steps = len(path) - 1 if path else 0
         # Greedy returns: path, g_score, f_score
         elif len(result) == 3 and algorithm.__name__ == "greedy":
             path, g_score, f_score = result
-            steps = len(path) if path else 0
+            steps = len(path) - 1 if path else 0
         # Annealing returns: best_path, path_length
         elif len(result) == 2 and algorithm.__name__ == "simulated_annealing":
             path, steps = result
         # A* returns only path
         elif len(result) == 1:
             path = result[0]
-            steps = len(path) if path else 0
+            steps = len(path) - 1 if path else 0
         else:
             path, steps = result
     else:
         path = result
-        steps = len(path) if path else 0
+        steps = len(path) - 1 if path else 0
 
     return path, steps, time_taken, current, peak
 
