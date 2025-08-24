@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+
+# Standard library modules (do not require installation, listed for clarity)
+# time
+# collections
+# queue
+# gc
+# tracemalloc
+# random
+# math
