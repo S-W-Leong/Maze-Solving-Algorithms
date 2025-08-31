@@ -1,31 +1,39 @@
 def dfs(maze, start, goal):
     stack = [start]
-    visited = set()
+    visited = set([start])
     parent = {start: None}
     path_found = False
+    rows, cols = len(maze), len(maze[0])
 
     while stack:
         current = stack.pop()
+        
         if current == goal:
             path_found = True
             break
-        if current not in visited:
-            visited.add(current)
-            x, y = current
-            for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                neighbor = (x + dx, y + dy)
-                if (0 <= neighbor[0] < len(maze) and
-                        0 <= neighbor[1] < len(maze[0]) and
-                        maze[neighbor[0]][neighbor[1]] == '.' and
-                        neighbor not in visited):
-                    stack.append(neighbor)
-                    parent[neighbor] = current
+            
+        x, y = current
+        
+        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            neighbor = (x + dx, y + dy)
+            nx, ny = neighbor
+            
+            if (0 <= nx < rows and
+                0 <= ny < cols and
+                maze[nx][ny] == '.' and
+                neighbor not in visited):
+                
+                stack.append(neighbor)
+                visited.add(neighbor)
+                parent[neighbor] = current
 
     path = []
     if path_found:
-        while current is not None:
-            path.append(current)
-            current = parent[current]
+        node = goal
+        while node is not None:
+            path.append(node)
+            node = parent.get(node)
         path.reverse()
-
+        
     return path, path_found, len(visited)
+
