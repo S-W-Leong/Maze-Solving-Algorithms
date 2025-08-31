@@ -1,4 +1,4 @@
-# Maze Map Definition
+# Maze Map Definition (15x15)
 
 # This file defines the maze as a 2D list, where "#" represents walls and "." represents free cells.
 # The maze below is designed so that all test cases are solvable.
@@ -20,3 +20,6 @@ MAZE = [
     ["#", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "#"],
     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
 ]
+
+for cell in MAZE:
+    print(cell)

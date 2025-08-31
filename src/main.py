@@ -61,17 +61,16 @@ def run_algorithm(algorithm, start, goal):
     tracemalloc.stop()
     
     # Calculate memory usage based on algorithm-specific data structures
-    if isinstance(result, tuple):
+    if algorithm.__name__ == "greedy":
+        path = result
+        steps = len(path) - 1 if path else 0
+    elif isinstance(result, tuple):
         # BFS returns: path, steps
         if len(result) == 2 and algorithm.__name__ == "bfs":
             path, steps = result
         # DFS returns: path, path_found, visited_count
         elif len(result) == 3 and algorithm.__name__ == "dfs":
             path, path_found, visited_count = result
-            steps = len(path) - 1 if path else 0
-        # Greedy returns: path, g_score, f_score
-        elif len(result) == 3 and algorithm.__name__ == "greedy":
-            path, g_score, f_score = result
             steps = len(path) - 1 if path else 0
         # Annealing returns: best_path, path_length
         elif len(result) == 2 and algorithm.__name__ == "simulated_annealing":
