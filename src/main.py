@@ -19,6 +19,7 @@ def main_menu():
     print("3. A* Search")
     print("4. Greedy Best-First Search")
     print("5. Simulated Annealing")
+    print("6. Run Comprehensive Analysis")
     print("0. Exit")
 
 def algorithm_menu(algorithm_name):
@@ -88,7 +89,9 @@ def run_algorithm(algorithm, start, goal):
     return path, steps, time_taken, current, peak
 
 def main():
+    import os
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         main_menu()
         choice = input("Enter your choice: ")
         
@@ -103,7 +106,23 @@ def main():
             '5': (simulated_annealing, "Simulated Annealing"),
         }
         
-        if choice in algorithm_map:
+        if choice == '6':
+            # Run comprehensive analysis
+            print("\nRunning comprehensive analysis...")
+            try:
+                from utils.analysis import analyze_results
+                analyzer, results, metrics = analyze_results()
+                print("\nAnalysis complete! Check the generated files:")
+                print("- performance_analysis_comparison.png")
+                print("- performance_analysis_test_cases.png")
+                print("- algorithm_analysis_report.txt")
+                input("\nPress Enter to continue...")
+            except Exception as e:
+                print(f"Error running analysis: {e}")
+                print("Please ensure all dependencies are installed:")
+                print("pip install numpy pandas matplotlib seaborn")
+                input("\nPress Enter to continue...")
+        elif choice in algorithm_map:
             algorithm, name = algorithm_map[choice]
             while True:
                 algorithm_menu(name)
@@ -115,14 +134,16 @@ def main():
                 if test_case_choice.isdigit() and 1 <= int(test_case_choice) <= len(TEST_CASES):
                     start, goal = TEST_CASES[int(test_case_choice) - 1]
                     path, steps, time_taken, current_memory, peak_memory = run_algorithm(algorithm, start, goal)
-                    
-                    print(f"\nPath Found: {path}")
-                    print(f"Steps Taken: {steps}")
-                    print(f"Time Taken: {time_taken:.4f} seconds")
-                    print(f"Current Memory: {current_memory:,} bytes")
-                    print(f"Peak Memory: {peak_memory:,} bytes")
-                    
-                    display_maze(MAZE, path, start, goal)
+
+                    if path:
+                        print(f"\nPath Found: {path}")
+                        print(f"Steps Taken: {steps}")
+                        print(f"Time Taken: {time_taken:.4f} seconds")
+                        print(f"Current Memory: {current_memory:,} bytes")
+                        print(f"Peak Memory: {peak_memory:,} bytes")
+                        display_maze(MAZE, path, start, goal)
+                    else:
+                        print("\nNo path found!")
                 else:
                     print("Invalid choice. Please try again.")
         else:

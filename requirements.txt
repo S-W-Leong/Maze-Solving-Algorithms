@@ -1,6 +1,7 @@
 numpy
 pandas
 matplotlib
+seaborn
 
 # Standard library modules (do not require installation, listed for clarity)
 time
