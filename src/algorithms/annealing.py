@@ -18,7 +18,6 @@ def simulated_annealing(maze, start, goal, max_iterations=1000, initial_temp=100
     current_temp = initial_temp
     best_path = [start]
     best_cost = heuristic(start, goal)
-    visited = set([start])
 
     found_goal = False
     for iteration in range(max_iterations):
@@ -26,8 +25,7 @@ def simulated_annealing(maze, start, goal, max_iterations=1000, initial_temp=100
             found_goal = True
             break
 
-        # Exclude visited neighbors
-        neighbors = [n for n in get_neighbors(current_position) if n not in visited]
+        neighbors = get_neighbors(current_position)
         if not neighbors:
             break
 
@@ -38,7 +36,6 @@ def simulated_annealing(maze, start, goal, max_iterations=1000, initial_temp=100
             current_position = next_position
             best_path.append(current_position)
             best_cost = next_cost
-            visited.add(current_position)
 
         current_temp *= cooling_rate
 
