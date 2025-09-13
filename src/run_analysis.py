@@ -73,7 +73,7 @@ def main():
         
         print(f"• Most Complete: {best_completeness} ({metrics['completeness'][best_completeness]['mean']*100:.1f}% success rate)")
         print(f"• Most Cost-Optimal: {best_cost} ({metrics['cost_optimality'][best_cost]['mean']:.1f} avg steps)")
-        print(f"• Fastest: {best_time} ({metrics['time_complexity'][best_time]['mean']*1000:.2f} ms avg)")
+        print(f"• Fastest: {best_time} ({metrics['time_complexity'][best_time]['mean']*1000000:.0f} μs avg)")
         print(f"• Most Memory-Efficient: {best_memory} ({metrics['space_complexity'][best_memory]['mean']/1024:.1f} KB avg)")
         
         print()

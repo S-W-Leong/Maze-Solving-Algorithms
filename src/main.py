@@ -52,9 +52,9 @@ def run_algorithm(algorithm, start, goal):
     # Start memory tracking
     tracemalloc.start()
     
-    start_time = time.time()
+    start_time = time.perf_counter()
     result = algorithm(MAZE, start, goal)
-    end_time = time.time()
+    end_time = time.perf_counter()
     time_taken = end_time - start_time
     
     # Get memory usage
@@ -138,7 +138,7 @@ def main():
                     if path:
                         print(f"\nPath Found: {path}")
                         print(f"Steps Taken: {steps}")
-                        print(f"Time Taken: {time_taken:.4f} seconds")
+                        print(f"Time Taken: {time_taken*1000000:.2f} microseconds")
                         print(f"Current Memory: {current_memory:,} bytes")
                         print(f"Peak Memory: {peak_memory:,} bytes")
                         display_maze(MAZE, path, start, goal)

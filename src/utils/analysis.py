@@ -34,9 +34,9 @@ class AlgorithmAnalyzer:
         tracemalloc.start()
         
         # Time the algorithm execution
-        start_time = time.time()
+        start_time = time.perf_counter()
         result = algorithm_func(MAZE, start, goal)
-        end_time = time.time()
+        end_time = time.perf_counter()
         time_taken = end_time - start_time
         
         # Get memory usage
@@ -221,10 +221,10 @@ class AlgorithmAnalyzer:
                            f'{v:.1f}', ha='center', va='bottom', fontsize=11, fontweight='bold')
         
         # 3. Time Complexity Comparison (Algorithm vs Average Time)
-        time_data = [metrics['time_complexity'][alg]['mean'] * 1000 for alg in self.algorithms.keys()]  # Convert to ms
+        time_data = [metrics['time_complexity'][alg]['mean'] * 1000000 for alg in self.algorithms.keys()]  # Convert to microseconds
         bars3 = axes[1, 0].bar(self.algorithms.keys(), time_data, color='lightgreen', alpha=0.7)
         axes[1, 0].set_title('Time Complexity: Average Execution Time', fontweight='bold', fontsize=14, pad=20)
-        axes[1, 0].set_ylabel('Time (milliseconds)', fontsize=12)
+        axes[1, 0].set_ylabel('Time (microseconds)', fontsize=12)
         axes[1, 0].tick_params(axis='x', rotation=45, labelsize=11)
         axes[1, 0].tick_params(axis='y', labelsize=11)
         
@@ -232,7 +232,7 @@ class AlgorithmAnalyzer:
         for i, (bar, v) in enumerate(zip(bars3, time_data)):
             height = bar.get_height()
             axes[1, 0].text(bar.get_x() + bar.get_width()/2., height + 0.05,
-                           f'{v:.2f}ms', ha='center', va='bottom', fontsize=11, fontweight='bold')
+                           f'{v:.0f}μs', ha='center', va='bottom', fontsize=11, fontweight='bold')
         
         # 4. Space Complexity Comparison (Algorithm vs Average Memory)
         memory_data = [metrics['space_complexity'][alg]['mean'] / 1024 for alg in self.algorithms.keys()]  # Convert to KB
@@ -296,12 +296,12 @@ class AlgorithmAnalyzer:
         for alg in algorithms:
             time_data = []
             for test_case in test_cases:
-                time_data.append(self.results[test_case][alg]['time_taken'] * 1000)  # Convert to ms
+                time_data.append(self.results[test_case][alg]['time_taken'] * 1000000)  # Convert to microseconds
             axes[0, 1].plot(range(1, len(test_cases) + 1), time_data, marker='s', label=alg, linewidth=2, markersize=6)
         
         axes[0, 1].set_title('Execution Time Across Test Cases', fontweight='bold', fontsize=14, pad=20)
         axes[0, 1].set_xlabel('Test Case', fontsize=12)
-        axes[0, 1].set_ylabel('Time (milliseconds)', fontsize=12)
+        axes[0, 1].set_ylabel('Time (microseconds)', fontsize=12)
         axes[0, 1].legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=11)
         axes[0, 1].grid(True, alpha=0.3)
         axes[0, 1].tick_params(labelsize=11)
@@ -383,9 +383,9 @@ class AlgorithmAnalyzer:
             f.write("3. TIME COMPLEXITY ANALYSIS (Average Execution Time):\n")
             f.write("-" * 50 + "\n")
             for alg in self.algorithms.keys():
-                avg_time = metrics['time_complexity'][alg]['mean'] * 1000  # Convert to ms
-                std_time = metrics['time_complexity'][alg]['std'] * 1000
-                f.write(f"{alg:20}: {avg_time:6.2f} ± {std_time:.2f} ms\n")
+                avg_time = metrics['time_complexity'][alg]['mean'] * 1000000  # Convert to microseconds
+                std_time = metrics['time_complexity'][alg]['std'] * 1000000
+                f.write(f"{alg:20}: {avg_time:6.0f} ± {std_time:.0f} μs\n")
             f.write("\n")
             
             # Space Complexity Analysis
@@ -408,7 +408,7 @@ class AlgorithmAnalyzer:
                     f.write(f"  {alg_name:18}: ")
                     if result['path_found']:
                         f.write(f"✓ Path found ({result['steps']} steps, ")
-                        f.write(f"{result['time_taken']*1000:.2f}ms, ")
+                        f.write(f"{result['time_taken']*1000000:.0f}μs, ")
                         f.write(f"{result['peak_memory']/1024:.1f}KB)\n")
                     else:
                         f.write("✗ No path found\n")

@@ -47,7 +47,7 @@ def test_single_algorithm():
         print(f"✓ BFS test completed:")
         print(f"  - Path found: {result['path_found']}")
         print(f"  - Steps: {result['steps']}")
-        print(f"  - Time: {result['time_taken']*1000:.2f} ms")
+        print(f"  - Time: {result['time_taken']*1000000:.0f} μs")
         print(f"  - Memory: {result['peak_memory']/1024:.1f} KB")
         
         return True
