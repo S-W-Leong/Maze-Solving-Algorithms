@@ -232,7 +232,7 @@ class AlgorithmAnalyzer:
         for i, (bar, v) in enumerate(zip(bars3, time_data)):
             height = bar.get_height()
             axes[1, 0].text(bar.get_x() + bar.get_width()/2., height + 0.05,
-                           f'{v:.0f}μs', ha='center', va='bottom', fontsize=11, fontweight='bold')
+                           f'{v:.0f}us', ha='center', va='bottom', fontsize=11, fontweight='bold')
         
         # 4. Space Complexity Comparison (Algorithm vs Average Memory)
         memory_data = [metrics['space_complexity'][alg]['mean'] / 1024 for alg in self.algorithms.keys()]  # Convert to KB
@@ -376,7 +376,7 @@ class AlgorithmAnalyzer:
             for alg in self.algorithms.keys():
                 avg_steps = metrics['cost_optimality'][alg]['mean']
                 std_steps = metrics['cost_optimality'][alg]['std']
-                f.write(f"{alg:20}: {avg_steps:6.1f} ± {std_steps:.1f} steps\n")
+                f.write(f"{alg:20}: {avg_steps:6.1f} +/- {std_steps:.1f} steps\n")
             f.write("\n")
             
             # Time Complexity Analysis
@@ -385,7 +385,7 @@ class AlgorithmAnalyzer:
             for alg in self.algorithms.keys():
                 avg_time = metrics['time_complexity'][alg]['mean'] * 1000000  # Convert to microseconds
                 std_time = metrics['time_complexity'][alg]['std'] * 1000000
-                f.write(f"{alg:20}: {avg_time:6.0f} ± {std_time:.0f} μs\n")
+                f.write(f"{alg:20}: {avg_time:6.0f} +/- {std_time:.0f} us\n")
             f.write("\n")
             
             # Space Complexity Analysis
@@ -394,7 +394,7 @@ class AlgorithmAnalyzer:
             for alg in self.algorithms.keys():
                 avg_memory = metrics['space_complexity'][alg]['mean'] / 1024  # Convert to KB
                 std_memory = metrics['space_complexity'][alg]['std'] / 1024
-                f.write(f"{alg:20}: {avg_memory:6.1f} ± {std_memory:.1f} KB\n")
+                f.write(f"{alg:20}: {avg_memory:6.1f} +/- {std_memory:.1f} KB\n")
             f.write("\n")
             
             # Detailed Results for Each Test Case
@@ -407,11 +407,11 @@ class AlgorithmAnalyzer:
                 for alg_name, result in test_case_results.items():
                     f.write(f"  {alg_name:18}: ")
                     if result['path_found']:
-                        f.write(f"✓ Path found ({result['steps']} steps, ")
-                        f.write(f"{result['time_taken']*1000000:.0f}μs, ")
+                        f.write(f"[OK] Path found ({result['steps']} steps, ")
+                        f.write(f"{result['time_taken']*1000000:.0f}us, ")
                         f.write(f"{result['peak_memory']/1024:.1f}KB)\n")
                     else:
-                        f.write("✗ No path found\n")
+                        f.write("[FAIL] No path found\n")
                 f.write("\n")
         
         print(f"Detailed report saved to: {save_path}")

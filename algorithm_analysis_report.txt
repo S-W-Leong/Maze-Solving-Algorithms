@@ -11,35 +11,112 @@ BFS                 :  100.0% success rate
 DFS                 :  100.0% success rate
 A*                  :  100.0% success rate
 Greedy              :  100.0% success rate
-Simulated Annealing :   20.0% success rate
+Simulated Annealing :   10.0% success rate
 
 2. COST OPTIMALITY ANALYSIS (Average Steps Taken):
 --------------------------------------------------
-BFS                 :   24.0 ± 0.0 steps
-DFS                 :   66.0 ± 5.9 steps
-A*                  :   24.0 ± 0.0 steps
-Greedy              :   28.0 ± 3.1 steps
-Simulated Annealing :    8.8 ± 17.7 steps
+BFS                 :   24.0 +/- 0.0 steps
+DFS                 :   66.0 +/- 5.9 steps
+A*                  :   24.0 +/- 0.0 steps
+Greedy              :   28.0 +/- 3.1 steps
+Simulated Annealing :   15.2 +/- 45.6 steps
 
 3. TIME COMPLEXITY ANALYSIS (Average Execution Time):
 --------------------------------------------------
-BFS                 :   1.10 ± 0.84 ms
-DFS                 :   0.81 ± 0.76 ms
-A*                  :   4.76 ± 2.20 ms
-Greedy              :   2.56 ± 1.18 ms
-Simulated Annealing :   1.44 ± 0.94 ms
+BFS                 :    410 +/- 22 us
+DFS                 :    351 +/- 151 us
+A*                  :   1391 +/- 348 us
+Greedy              :    881 +/- 252 us
+Simulated Annealing :   6011 +/- 1962 us
 
 4. SPACE COMPLEXITY ANALYSIS (Average Memory Usage):
 --------------------------------------------------
-BFS                 :   20.8 ± 0.9 KB
-DFS                 :   11.1 ± 3.3 KB
-A*                  :   16.1 ± 2.9 KB
-Greedy              :   12.2 ± 0.8 KB
-Simulated Annealing :    4.9 ± 1.3 KB
+BFS                 :   20.8 +/- 0.9 KB
+DFS                 :   11.1 +/- 3.3 KB
+A*                  :   16.1 +/- 2.9 KB
+Greedy              :   12.2 +/- 0.8 KB
+Simulated Annealing :    9.7 +/- 0.5 KB
 
 DETAILED RESULTS BY TEST CASE:
 ==================================================
 
 Test Case 1:
 ------------------------------
-  BFS               : 
+  BFS               : [OK] Path found (24 steps, 385us, 18.0KB)
+  DFS               : [OK] Path found (72 steps, 271us, 10.0KB)
+  A*                : [OK] Path found (24 steps, 898us, 15.0KB)
+  Greedy            : [OK] Path found (24 steps, 524us, 10.6KB)
+  Simulated Annealing: [OK] Path found (152 steps, 1261us, 10.8KB)
+
+Test Case 2:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 397us, 21.1KB)
+  DFS               : [OK] Path found (70 steps, 304us, 9.9KB)
+  A*                : [OK] Path found (24 steps, 1684us, 14.8KB)
+  Greedy            : [OK] Path found (24 steps, 698us, 10.6KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 3:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 373us, 21.1KB)
+  DFS               : [OK] Path found (72 steps, 278us, 10.0KB)
+  A*                : [OK] Path found (24 steps, 1074us, 14.7KB)
+  Greedy            : [OK] Path found (24 steps, 655us, 12.8KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 4:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 390us, 21.1KB)
+  DFS               : [OK] Path found (66 steps, 576us, 9.6KB)
+  A*                : [OK] Path found (24 steps, 2021us, 15.0KB)
+  Greedy            : [OK] Path found (32 steps, 1032us, 12.5KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 5:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 427us, 21.1KB)
+  DFS               : [OK] Path found (64 steps, 243us, 9.4KB)
+  A*                : [OK] Path found (24 steps, 1224us, 14.9KB)
+  Greedy            : [OK] Path found (32 steps, 850us, 12.4KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 6:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 408us, 21.1KB)
+  DFS               : [OK] Path found (62 steps, 236us, 9.2KB)
+  A*                : [OK] Path found (24 steps, 1085us, 15.1KB)
+  Greedy            : [OK] Path found (32 steps, 1031us, 12.9KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 7:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 424us, 21.1KB)
+  DFS               : [OK] Path found (60 steps, 231us, 9.1KB)
+  A*                : [OK] Path found (24 steps, 1315us, 15.3KB)
+  Greedy            : [OK] Path found (28 steps, 1049us, 13.1KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 8:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 444us, 21.1KB)
+  DFS               : [OK] Path found (58 steps, 221us, 9.0KB)
+  A*                : [OK] Path found (24 steps, 1878us, 15.5KB)
+  Greedy            : [OK] Path found (28 steps, 1445us, 12.4KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 9:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 419us, 21.1KB)
+  DFS               : [OK] Path found (76 steps, 509us, 14.1KB)
+  A*                : [OK] Path found (24 steps, 1276us, 15.6KB)
+  Greedy            : [OK] Path found (28 steps, 796us, 12.3KB)
+  Simulated Annealing: [FAIL] No path found
+
+Test Case 10:
+------------------------------
+  BFS               : [OK] Path found (24 steps, 431us, 21.1KB)
+  DFS               : [OK] Path found (60 steps, 639us, 20.2KB)
+  A*                : [OK] Path found (24 steps, 1457us, 24.7KB)
+  Greedy            : [OK] Path found (28 steps, 734us, 12.3KB)
+  Simulated Annealing: [FAIL] No path found
+
